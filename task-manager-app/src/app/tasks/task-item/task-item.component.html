@@ -1,30 +1,29 @@
 <div
-  class="task-item d-flex justify-content-between align-items-center w-100 bg-white p-3 rounded-4"
+  class="task-item d-flex justify-content-between align-items-center w-100 bg-white py-3 px-4 rounded-4"
 >
   <div class="task-item-info d-flex align-items-center gap-4">
-    <div class="task-item-checkbox">
-      <input type="checkbox" class="task-item-marker" />
+    <input type="checkbox" class="task-item-marker" />
+
+    <div class="task-item-title ms-3">
+      <label>Send email</label>
     </div>
-    <div class="task-item-title">
-      <label>{{ task.title }}</label>
-    </div>
-    <div class="task-item-category">{{ task.category }}</div>
+    <div class="task-item-category">o</div>
   </div>
   <div class="task-item-options d-flex align-items-center gap-3">
-    <div class="task-item-time">{{ task.time }}</div>
+    <div class="task-item-time">hh</div>
     <div class="task-item-actions d-flex align-items-center">
       <app-action-button
-        [img]="'images/view-icon.svg'"
+        [img]="'images/viewIcon.svg'"
         [action]="viewTask"
       ></app-action-button>
 
       <app-action-button
-        [img]="'images/edit-icon.svg'"
+        [img]="'images/editIcon.svg'"
         [action]="editTask"
       ></app-action-button>
 
       <app-action-button
-        [img]="'images/delete-icon.svg'"
+        [img]="'images/deleteIcon.svg'"
         [action]="deleteTask"
       ></app-action-button>
     </div>

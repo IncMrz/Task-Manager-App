@@ -1,0 +1,34 @@
+<div class="task-details d-flex flex-column gap-5 justify-content-between w-100 bg-white p-4 rounded-4">
+    <div class="title-details-body d-flex flex-column gap-3">
+      <div class="title-details-name d-flex flex-column gap-1">
+        <label>Task name</label>
+        <span >Send email</span>
+      </div>
+      <div class="title-details-description d-flex flex-column gap-1">
+        <label>Details</label>
+        <span >
+          Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
+        </span>
+
+      </div>
+      <div class="title-details-info d-flex gap-5">
+        <div class="d-flex flex-column gap-1">
+          <label>Date and time</label>
+          <div class="d-flex gap-3">
+            <span>Mon 12. 03. 2025.</span>
+            <span>9:00</span>
+          </div>
+        </div>
+        <div class="d-flex flex-column gap-1">
+          <label>Category</label>
+          <span>o Work</span>
+        </div>
+      </div>
+    </div>
+    <div class="task-details-options d-flex gap-3">
+      <app-action-button [img]="'images/viewIcon.svg'" [text]="'Mark as completed'" [action]="someActionFunction"></app-action-button>
+      <app-action-button [img]="'images/editIcon.svg'" [text]="'Edit task'" [action]="someActionFunction"></app-action-button>
+      <app-action-button [img]="'images/deleteIcon.svg'" [text]="'Delete task'" [action]="someActionFunction"></app-action-button>
+    </div>
+  </div>
+  

@@ -2,7 +2,8 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 :root {
     --bg-color: #e2e2e2;
+    --color-primary: rgb(46, 181, 199);
 }
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color) !important;
 }

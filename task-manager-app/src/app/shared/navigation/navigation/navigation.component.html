@@ -1,0 +1,41 @@
+  <!-- Desktop sidebar -->
+  <div class="navigation d-none d-md-block h-100 bg-white">
+    <div class="d-flex flex-column gap-3 pt-2">
+      <h5>Task manager app</h5>
+      <div class="d-flex flex-column gap-2">
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Dashboard'" [action]="someActionFunction"></app-nav-button>
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Completed'" [action]="someActionFunction"></app-nav-button>
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Personal'" [action]="someActionFunction"></app-nav-button>
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Work'" [action]="someActionFunction"></app-nav-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile sidebar with icons only -->
+  <div class="navigation-mobile d-block d-md-none bg-white h-100 ">
+    <button class="btn p-0 w-100" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
+      <img class="w-100" src="images/hamburgerIcon.svg" alt="Menu" />
+    </button>
+    <div class="d-flex flex-column align-items-center gap-2 mt-3">
+      <app-nav-button [img]="'images/viewIcon.svg'" [text]="''" [action]="someActionFunction"></app-nav-button>
+      <app-nav-button [img]="'images/viewIcon.svg'" [text]="''" [action]="someActionFunction"></app-nav-button>
+      <app-nav-button [img]="'images/viewIcon.svg'" [text]="''" [action]="someActionFunction"></app-nav-button>
+      <app-nav-button [img]="'images/viewIcon.svg'" [text]="''" [action]="someActionFunction"></app-nav-button>
+    </div>
+  </div>
+
+  <!-- Mobile offcanvas -->
+  <div class="offcanvas offcanvas-start" id="offcanvasNav" tabindex="-1" aria-labelledby="offcanvasNavLabel">
+    <div class="offcanvas-header pt-2">
+      <h5 class="offcanvas-title" id="offcanvasNavLabel">Task Manager App</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-flex flex-column gap-2">
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Dashboard'" [action]="someActionFunction"></app-nav-button>
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Completed'" [action]="someActionFunction"></app-nav-button>
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Personal'" [action]="someActionFunction"></app-nav-button>
+        <app-nav-button [img]="'images/viewIcon.svg'" [text]="'Work'" [action]="someActionFunction"></app-nav-button>
+      </div>
+    </div>
+  </div>

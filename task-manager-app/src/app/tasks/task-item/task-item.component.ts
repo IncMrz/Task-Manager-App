@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActionButtonComponent } from '../../shared/buttons/action-button.component';
+import { ActionButtonComponent } from '../../shared/buttons/action-button/action-button.component';
 
 
 @Component({

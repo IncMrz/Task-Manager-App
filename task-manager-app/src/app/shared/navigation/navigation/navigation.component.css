@@ -1,0 +1,23 @@
+.navigation {
+  height: 100vh;
+  padding: 10px;
+  width: 250px;
+}
+.navigation-mobile {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  height: 100vh;
+}
+
+.navigation-mobile button {
+  border: none;
+  background: none;
+}
+
+.offcanvas {
+  width: 250px;
+}
+

@@ -1,0 +1,28 @@
+.nav-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: none;
+  background-color: #E2E2E2;
+  cursor: pointer;
+  padding: 10px;
+
+}
+
+.nav-button-img {
+  width: 15px;
+  height: 15px;
+}
+
+.nav-button span {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* For md and above */
+@media (min-width: 768.99px) {
+  .nav-button-img {
+    width: 30px;
+    height: 30px;
+  }
+}
