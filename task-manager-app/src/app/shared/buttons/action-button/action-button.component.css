@@ -7,4 +7,6 @@
     width: 25px;
     height: 25px;
   }
-  
+span.primary {
+  color: white !important;
+}

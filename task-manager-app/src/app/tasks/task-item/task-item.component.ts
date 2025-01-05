@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActionButtonComponent } from '../../shared/buttons/action-button/action-button.component';
-
+import { TaskModel } from '../../model/Task';
 
 @Component({
   selector: 'app-task-item',
@@ -11,24 +11,14 @@ import { ActionButtonComponent } from '../../shared/buttons/action-button/action
   styleUrls: ['./task-item.component.css']
 })
 export class TaskItemComponent {
-  @Input() task: any;
-  @Output() taskUpdated = new EventEmitter<void>();
+  @Input() task!: TaskModel;
+  @Output() taskSelected = new EventEmitter<TaskModel>();
 
-
-  // Gledaj zadatak
-  viewTask() {
-    console.log('Viewing task', this.task);
+ 
+  editTask(task: TaskModel) {
+    this.taskSelected.emit(task);
   }
-
-  // Uredi zadatak
-  editTask() {
-    console.log('Editing task', this.task);
-    // Prikazivanje forme za editiranje ili nešto slično
-  }
-
-  // Obriši zadatak
   deleteTask() {
     console.log('Deleting task', this.task);
-    
   }
 }

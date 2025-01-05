@@ -5,27 +5,40 @@
     <input type="checkbox" class="task-item-marker" />
 
     <div class="task-item-title ms-3">
-      <label>Send email</label>
+      <label>{{ task.title }}</label>
     </div>
-    <div class="task-item-category">o</div>
+    <div class="task-item-category">
+      <div class="task-item-category">
+        <img
+          class="category-icon"
+          [src]="
+            task.category === 'Work'
+              ? 'images/workIcon.svg'
+              : 'images/personalIcon.svg'
+          "
+          [alt]="task.category === 'Work' ? 'Work Icon' : 'Personal Icon'"
+        />
+      </div>
+    </div>
   </div>
   <div class="task-item-options d-flex align-items-center gap-3">
-    <div class="task-item-time">hh</div>
+    <div class="task-item-time">{{ task.dateTime | date : "shortTime" }}</div>
     <div class="task-item-actions d-flex align-items-center">
-      <app-action-button
+      <button (click)="editTask(task)"></button>
+      <!-- <app-action-button
         [img]="'images/viewIcon.svg'"
-        [action]="viewTask"
+        [action]="editTask(task)"
       ></app-action-button>
 
       <app-action-button
         [img]="'images/editIcon.svg'"
-        [action]="editTask"
+        [action]="editTask(task)"
       ></app-action-button>
 
       <app-action-button
         [img]="'images/deleteIcon.svg'"
-        [action]="deleteTask"
-      ></app-action-button>
+        [action]="editTask(task)"
+      ></app-action-button> -->
     </div>
   </div>
 </div>

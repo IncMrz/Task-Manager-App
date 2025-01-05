@@ -1,3 +1,7 @@
-<div class="task-list d-flex flex-column gap-5 w-100">
-  <app-task-item></app-task-item>
+<div class="task-list d-flex flex-column gap-3 w-100">
+  <div *ngFor="let task of taskList">
+    <app-task-item [task]="task"></app-task-item>
+  </div>
 </div>
+
+

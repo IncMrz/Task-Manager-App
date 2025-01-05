@@ -11,5 +11,6 @@ import { CommonModule } from '@angular/common';
 export class ActionButtonComponent {
   @Input() img: string = '';
   @Input() text: string = '';
+  @Input() class: string = '';
   @Input() action: Function | null = null;
 }

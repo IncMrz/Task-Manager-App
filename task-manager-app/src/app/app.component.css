@@ -1,6 +1,3 @@
-.main-container {
-  height: 100vh;
-}
 .container {
   flex-grow: 1;
   padding: 50px 0px;
@@ -23,6 +20,20 @@
   width: 30px;
   height: 30px;
 }
+
+app-action-button {
+  background-color: var(--color-primary);
+  border-radius: 60px;
+  padding: .35rem 20px;
+  transition: .2s all ease-in;
+}
+app-action-button:hover {
+  padding: .35rem 25px;
+}
+.primary{
+  color: white !important;
+}
+
 
 .search-container:has(> .search-bar:active),
 .search-container:has(> .search-bar:focus) {

@@ -2,8 +2,12 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 :root {
     --bg-color: #e2e2e2;
-    --color-primary: rgb(46, 181, 199);
+    --color-primary: rgb(219, 99, 0);
+    --color-secondary: rgb(255, 204, 145);
+    --font-primary: "Red Hat Display", serif;
 }
 body {
     background-color: var(--bg-color) !important;
+    font-family: var(--font-primary) !important;
+    font-optical-sizing: auto;
 }
