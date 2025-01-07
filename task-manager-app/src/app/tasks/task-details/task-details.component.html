@@ -1,34 +1,85 @@
-<div class="task-details d-flex flex-column gap-5 justify-content-between w-100 bg-white p-4 rounded-4">
-    <div class="title-details-body d-flex flex-column gap-3">
-      <div class="title-details-name d-flex flex-column gap-1">
-        <label>Task name</label>
-        <span >Send email</span>
-      </div>
-      <div class="title-details-description d-flex flex-column gap-1">
-        <label>Details</label>
-        <span >
-          Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
-        </span>
-
-      </div>
-      <div class="title-details-info d-flex gap-5">
-        <div class="d-flex flex-column gap-1">
-          <label>Date and time</label>
-          <div class="d-flex gap-3">
-            <span>Mon 12. 03. 2025.</span>
-            <span>9:00</span>
-          </div>
+<!-- Task detailed view -->
+<div
+  class="task-details d-flex flex-column gap-5 justify-content-between w-100 bg-white p-4 rounded-4 px-5"
+>
+  <div class="title-details-body d-flex flex-column gap-3">
+    <div class="title-details-name d-flex flex-column gap-1">
+      <label>Task Name</label>
+      <span>{{ task?.title }}</span>
+    </div>
+    <div class="title-details-description d-flex flex-column gap-1">
+      <label>Details</label>
+      <span>{{ task?.description }}</span>
+    </div>
+    <div class="title-details-info d-flex flex-wrap gap-5">
+      <div class="d-flex flex-column gap-1">
+        <label>Date and Time</label>
+        <div class="d-flex gap-3">
+          <span>{{ task?.dateTime | date : "fullDate" }}</span>
+          <span>{{ task?.dateTime | date : "shortTime" }}</span>
         </div>
-        <div class="d-flex flex-column gap-1">
-          <label>Category</label>
-          <span>o Work</span>
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <label>Category</label>
+        <div class="d-flex gap-1">
+          <img
+            [src]="
+              task?.category === 'Work'
+                ? 'images/workIcon.svg'
+                : 'images/personalIcon.svg'
+            "
+            [alt]="task?.category === 'Work' ? 'Work Icon' : 'Personal Icon'"
+            class="category-icon"
+          />
+          <span>{{ task?.category }}</span>
         </div>
       </div>
     </div>
-    <div class="task-details-options d-flex justify-content-end gap-3">
-      <app-action-button [img]="'images/viewIcon.svg'" [text]="'Mark as completed'" [action]="someActionFunction"></app-action-button>
-      <app-action-button [img]="'images/editIcon.svg'" [text]="'Edit task'" [action]="someActionFunction"></app-action-button>
-      <app-action-button [img]="'images/deleteIcon.svg'" [text]="'Delete task'" [action]="someActionFunction"></app-action-button>
+    <div class="d-flex flex-column gap-1">
+      <label>Status</label>
+      <div class="d-flex gap-5">
+        <span>{{ task?.completed ? "Completed" : "Pending" }}</span>
+        <label class="d-flex align-items-center gap-2">
+          <input
+            type="checkbox"
+            class="task-item-marker"
+            [checked]="task?.completed"
+            (change)="toggleTaskStatus()"
+          />
+          Mark as {{ task?.completed ? "pending" : "completed" }}
+        </label>
+      </div>
     </div>
   </div>
-  
+
+  <div class="d-flex justify-content-between">
+    <app-action-button
+      [img]="'images/backIcon.svg'"
+      [text]="'Back to tasks'"
+      class="btn-prm"
+      (click)="goBack()"
+    ></app-action-button>
+    <div class="task-details-options d-flex justify-content-end gap-3">
+      <app-action-button
+        [img]="'images/editIcon.svg'"
+        [text]="'Edit task'"
+        class="btn-sec"
+        (click)="openEditModal()"
+      ></app-action-button>
+      <app-action-button
+        [img]="'images/deleteIcon.svg'"
+        [text]="'Delete task'"
+        class="btn-sec"
+        (click)="deleteTask()"
+      ></app-action-button>
+    </div>
+  </div>
+</div>
+
+<!-- Task form modal -->
+<app-task-form
+  *ngIf="showEditModal"
+  [task]="task"
+  (save)="onSaveTask($event)"
+  (cancel)="closeEditModal()"
+></app-task-form>

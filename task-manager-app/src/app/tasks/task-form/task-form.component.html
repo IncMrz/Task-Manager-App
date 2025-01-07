@@ -1,57 +1,105 @@
-
-<!-- Bootstrap modal -->
 <div
-  class="modal fade"
+  class="modal fade show d-block"
   id="taskModal"
   tabindex="-1"
-  aria-labelledby="taskModalLabel"
   aria-hidden="true"
 >
+  <!-- Task form modal dialog -->
   <div class="modal-dialog modal-lg">
-    <!-- Modal-lg for larger size -->
     <div class="modal-content p-3">
+      <!-- Modal header -->
       <div class="modal-header">
-        <h5 class="modal-title" id="taskModalLabel">Add new task</h5>
+        <h5 class="modal-title">
+          {{ task?.id ? "Edit Task" : "Add New Task" }}
+        </h5>
         <button
           type="button"
           class="btn-close"
-          data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="onCancel()"
         ></button>
       </div>
+      <!-- Modal body -->
       <div class="modal-body">
-        <!-- Form -->
-        <form [formGroup] = "taskForm">
+        <form [formGroup]="taskForm">
           <div class="d-flex flex-column gap-3">
             <div class="d-flex flex-column gap-1 col-12 col-md-6">
-              <label for="inputName" class="form-label">Task name</label>
-              <input type="text" formControlName="title" class="form-control" id="inputName" />
+              <label for="inputName" class="form-label">Task Name</label>
+              <input
+                id="inputName"
+                type="text"
+                formControlName="title"
+                class="form-control"
+                placeholder="Enter task name"
+              />
+              <small
+                *ngIf="
+                  taskForm.get('title')?.invalid &&
+                  taskForm.get('title')?.touched
+                "
+                class="text-danger"
+              >
+                Task title is required.
+              </small>
             </div>
             <div class="d-flex flex-column gap-1">
               <label for="inputDetail" class="form-label">Details</label>
               <textarea
-                formControlName="description" class="form-control"
                 id="inputDetail"
+                formControlName="description"
+                class="form-control"
+                placeholder="Enter task details"
                 rows="3"
               ></textarea>
+              <small
+                *ngIf="
+                  taskForm.get('description')?.invalid &&
+                  taskForm.get('description')?.touched
+                "
+                class="text-danger"
+              >
+                Task details are required.
+              </small>
             </div>
             <div class="d-flex gap-5">
               <div class="d-flex flex-column gap-1">
-                <label for="inputDate" class="form-label">Date and time</label>
+                <label for="inputDate" class="form-label">Date and Time</label>
                 <input
-                  type="datetime-local"
                   id="inputDate"
-                  name="task-date"
-                  formControlName="dateTime" class="form-control"
+                  type="datetime-local"
+                  formControlName="dateTime"
+                  class="form-control"
                 />
+                <small
+                  *ngIf="
+                    taskForm.get('dateTime')?.invalid &&
+                    taskForm.get('dateTime')?.touched
+                  "
+                  class="text-danger"
+                >
+                  Task date and time are required.
+                </small>
               </div>
               <div class="d-flex flex-column gap-1">
                 <label for="inputCategory" class="form-label">Category</label>
-                <select id="inputCategory" formControlName="category" class="form-select">
-                  <option selected>Choose category</option>
-                  <option>Work</option>
-                  <option>Personal</option>
+                <select
+                  id="inputCategory"
+                  formControlName="category"
+                  class="form-select"
+                >
+                  <option value="" disabled selected>Choose category</option>
+                  <option value="Work">Work</option>
+                  <option value="Personal">Personal</option>
                 </select>
+                <small
+                  *ngIf="
+                    taskForm.get('category')?.invalid &&
+                    taskForm.get('category')?.touched
+                  "
+                  class="text-danger"
+                >
+                  Task category is required.
+                </small>
               </div>
             </div>
           </div>
@@ -59,21 +107,10 @@
       </div>
       <!-- Modal footer buttons -->
       <div class="modal-footer">
-        <button (click) = "onSave()"
-        >Save</button>
-        <!-- <app-action-button
-          [img]="''"
-          [class]="'primary'"
-          [text]="'Save task'"
-          [action]="onSave()"
-        ></app-action-button> -->
-        <app-action-button
-          [img]="''"
-          [text]="'Cancel'"
-          [action]="someActionFunction"
-          data-bs-dismiss="modal"
-        ></app-action-button>
+        <button class="button-primary" (click)="onSave()">Save task</button>
+        <button class="button-secondary" (click)="onCancel()">Cancel</button>
       </div>
     </div>
   </div>
 </div>
+<div class="modal-backdrop fade show"></div>

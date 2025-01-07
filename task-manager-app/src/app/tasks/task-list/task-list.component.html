@@ -1,7 +1,58 @@
-<div class="task-list d-flex flex-column gap-3 w-100">
-  <div *ngFor="let task of taskList">
-    <app-task-item [task]="task"></app-task-item>
+<div class="d-flex justify-content-between py-5 flex-wrap gap-3 gap-md-0">
+  <!-- Add task Button -->
+  <app-action-button
+    [img]="'images/addIcon.svg'"
+    [text]="'New Task'"
+    class="d-none d-md-block btn-prm"
+    (click)="onAddTask()"
+  ></app-action-button>
+  <app-action-button
+    [img]="'images/addIcon.svg'"
+    class="d-md-none btn-prm"
+    (click)="onAddTask()"
+  ></app-action-button>
+  <div
+    class="task-list-header d-flex justify-content-md-end align-items-center gap-3 flex-wrap"
+  >
+    <!-- Search bar -->
+    <div class="search-container d-flex gap-2 p-1 ps-3 align-items-center">
+      <img src="images/searchIcon.svg" alt="Search icon" class="search-icon" />
+      <input
+        type="text"
+        class="search-bar"
+        placeholder="Search tasks"
+        (input)="onSearchChange($event)"
+      />
+    </div>
+    <!-- Filter options -->
+    <div class="d-flex align-items-baseline gap-3">
+      <label for="filter" class="form-label">Filter by</label>
+      <select id="filter" class="filter" (change)="onFilterChange($event)">
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+      </select>
+    </div>
   </div>
 </div>
 
+<!-- Task list that contains task-items-->
+<div class="task-list d-flex flex-column gap-3 w-100">
+  <div *ngFor="let task of filteredTasks">
+    <app-task-item
+      [task]="task"
+      (edit)="onEditTask($event)"
+      (delete)="onDeleteTask($event)"
+    ></app-task-item>
+  </div>
+</div>
 
+<!-- Task form modal -->
+<app-task-form
+  *ngIf="showEditModal"
+  [task]="currentTask"
+  (save)="onSaveTask($event)"
+  (cancel)="closeEditModal()"
+></app-task-form>

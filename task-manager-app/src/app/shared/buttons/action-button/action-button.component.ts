@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './action-button.component.css'
 })
 export class ActionButtonComponent {
-  @Input() img: string = '';
-  @Input() text: string = '';
+  @Input() img!: string;
+  @Input() text!: string;
   @Input() class: string = '';
-  @Input() action: Function | null = null;
+  @Input() action: () => void = () => {};
 }

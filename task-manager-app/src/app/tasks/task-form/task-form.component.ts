@@ -1,64 +1,65 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActionButtonComponent } from '../../shared/buttons/action-button/action-button.component';
-import { TaskModel } from '../../model/Task';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ActionButtonComponent, ReactiveFormsModule],
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
+  imports: [ReactiveFormsModule, CommonModule],
 })
-export class TaskFormComponent {
-  taskForm: FormGroup = new FormGroup({});
-  taskObj: TaskModel = new TaskModel();
-  taskList: TaskModel[] = [];
+//Implement on changes to track changes in form, get data from parent and emit data for cancel and save
+export class TaskFormComponent implements OnChanges {
+  @Input() task: any | null = null;
+  @Output() cancel = new EventEmitter<void>();
+  @Output() save = new EventEmitter<any>();
 
-  someActionFunction() {
-    console.log('blksajd');
-  }
-  constructor() {
-    this.createForm();
-  }
-
-  ngOnInit() {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const oldData = localStorage.getItem('TaskData');
-      if (oldData != null) {
-        const parseData = JSON.parse(oldData);
-        this.taskList = parseData;
-      }
-    }
-  }
-
-  createForm() {
-    this.taskForm = new FormGroup({
-      taskId: new FormControl(this.taskObj.taskId),
-      title: new FormControl(this.taskObj.title),
-      description: new FormControl(this.taskObj.description),
-      category: new FormControl(this.taskObj.category),
-      dateTime: new FormControl(this.taskObj.dateTime),
-      status: new FormControl(this.taskObj.status),
+  //Define form group and validators for every input
+  taskForm: FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.taskForm = this.fb.group({
+      id: [null],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      dateTime: ['', Validators.required],
+      category: ['', Validators.required],
     });
   }
 
-  onSave() {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const oldData = localStorage.getItem('TaskData');
-      if (oldData != null) {
-        const parseData = JSON.parse(oldData);
-        this.taskForm.controls['taskId'].setValue(parseData.length + 1);
-        this.taskList.unshift(this.taskForm.value);
-      } else {
-        this.taskList.unshift(this.taskForm.value);
-      }
-      localStorage.setItem('TaskData', JSON.stringify(this.taskList));
+  //On changed data (using hook) update only that changed value, else clear the form
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['task'] && this.task) {
+      this.taskForm.patchValue(this.task);
+    } else {
+      this.taskForm.reset();
     }
   }
-  onEdit(item: TaskModel) {
-    this.taskObj = item;
-    this.createForm();
+
+//Validate inputs and emit data to parent
+  onSave(): void {
+    if (this.taskForm.invalid) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+    const taskData = this.taskForm.value;
+    this.save.emit(taskData);
+    this.onCancel();
+  }
+
+  onCancel(): void {
+    this.cancel.emit();
   }
 }

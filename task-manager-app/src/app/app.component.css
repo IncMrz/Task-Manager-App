@@ -2,53 +2,6 @@
   flex-grow: 1;
   padding: 50px 0px;
 }
-.search-container {
-  border: solid 1px rgb(155, 155, 155);
-  border-radius: 50px;
-  background-color: white;
-  overflow-x: hidden;
-}
-.search-bar {
-  border: none;
-  border-radius: 50px;
-  overflow-x: hidden;
-  border: none;
-  outline: none;
-  flex: 1;
-}
-.search-icon {
-  width: 30px;
-  height: 30px;
-}
-
-app-action-button {
-  background-color: var(--color-primary);
-  border-radius: 60px;
-  padding: .35rem 20px;
-  transition: .2s all ease-in;
-}
-app-action-button:hover {
-  padding: .35rem 25px;
-}
-.primary{
-  color: white !important;
-}
-
-
-.search-container:has(> .search-bar:active),
-.search-container:has(> .search-bar:focus) {
-  border: 1px solid var(--color-primary);
-  outline: none;
-  box-shadow: 0 0 3px var(--color-primary);
-}
-
-
-
-
 router-outlet {
   display: block;
-}
-@media (min-width: 768.99px) {
-
-  
 }

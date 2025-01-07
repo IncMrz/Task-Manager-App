@@ -1,0 +1,51 @@
+.search-container,
+.filter {
+  border: solid 1px rgb(155, 155, 155);
+  border-radius: 50px;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.filter {
+  padding: 0.4rem 20px;
+}
+
+.search-bar {
+  border: none;
+  border-radius: 50px;
+  overflow-x: hidden;
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.search-icon {
+  width: 30px;
+  height: 30px;
+}
+
+app-action-button {
+  max-width: fit-content;
+  background-color: var(--color-primary);
+  border-radius: 60px;
+  padding: 0.15rem 20px;
+  transition: 0.2s all ease-in;
+}
+
+app-action-button:hover {
+  padding: 0.15rem 25px;
+}
+
+.primary {
+  color: white !important;
+}
+
+.search-container:has(> .search-bar:active),
+.search-container:has(> .search-bar:focus),
+.filter:focus,
+.filter:active {
+  border-color: var(--color-primary);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 2px var(--color-secondary);
+  outline: 0 none;
+}

@@ -1,4 +1,4 @@
-<button class="action-button d-flex align-items-center gap-3" (click)="action && action()">
-  <img *ngIf="img" [src]="img" alt="Button Image" class="action-button-img"/>
-  <span [ngClass]="class">{{ text }}</span>
+<button class="action-button d-flex align-items-center gap-3 btn" (click)="action()">
+  <img *ngIf="img" [src]="img" alt="Button Image" class="action-button-img" />
+  <span *ngIf="text">{{ text }}</span>
 </button>
